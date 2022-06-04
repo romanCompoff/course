@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function(){
-   return view('welcome');
+   return view('webuni.index');
 });
 
 Route::get('/111', 'CourseController@index');
@@ -23,8 +23,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['role:admin']], function () {
-   Route::get('/control-panel', function(){
-      echo 'q';
-   });
+Route::middleware(['role:admin'])->prefix('administrator')->group( function () {
+   Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index']);
 });
