@@ -64,19 +64,48 @@
 	<!-- Hero section -->
 	<section class="hero-section set-bg" data-setbg="/webuni/img/bg.jpg">
 		<div class="container">
-			<div class="hero-text text-white">
+			<div class="hero-text text-white mb-3">
 				<h2>Онлайн центр иностранных языков<br>"Диалог" </h2>
 				<p>Обучаем по международным стандартам, открываем мир новых возможностей! Перейди на новый уровень и заговори  уверенней.</p>
 			</div>
 			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
+				<div class="col-lg-10 offset-lg-1 text-center">
 
-						<button class="site-btn">Зарегистрироваться</button>
+						<a href="{{ route('register') }}" class="site-btn">Зарегистрироваться</a>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- Hero section end -->
+	<section id="block2">
+		<div class="row">
+			<div class="col-12 col-md-6"><img src="/webuni/img/works/1.jpg" alt="">
+		<h3>1. Теория</h3>
+		<span>
+		Изучаем новую лексику, грамматику и случаи, гдед можно использовать эти знания.
+		</span>
+		
+		</div>
+			<div class="col-12 col-md-6"><img src="/webuni/img/works/2.jpg" alt="">
+		<h3>2. Практика</h3>
+		<span>Оттачиваем грамматику, произношение и чтение на разных примерах.</span>
+
+		</div>
+			<div class="col-12 col-md-6"><img src="/webuni/img/works/12.jpg" alt="">
+		<h3>3. Задания на дом</h3>
+		<span>
+		В конце каждого занятия даем задания на дом.
+		</span>
+		
+	</div>
+			<div class="col-12 col-md-6"><img src="/webuni/img/works/3.jpg" alt="">
+		<h3>4. Повторение</h3>
+		<span>
+		Каждое занятие начинается с повторения пройденного материала.
+		</span>
+		</div>
+		</div>
+	</section>
 
 
 	<!-- categories section -->

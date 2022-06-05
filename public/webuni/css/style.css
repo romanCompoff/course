@@ -1755,3 +1755,16 @@ ol {
 		margin-right: 10px;
 	}
 }
+
+
+#block2 span,
+#block2 img
+{
+	width:60%;
+	display: inline-block;
+}
+
+#block2{
+	padding: 20px;
+	text-align: center;
+}
