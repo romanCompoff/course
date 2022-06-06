@@ -22,6 +22,7 @@ Route::get('/111', 'CourseController@index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/shedule', [App\Http\Controllers\SheduleController::class, 'index'])->name('shedule');
 
 Route::middleware(['role:admin'])->prefix('administrator')->group( function () {
    Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index']);
