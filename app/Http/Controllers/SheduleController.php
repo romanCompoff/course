@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Shedule;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class SheduleController extends Controller
 {
@@ -15,7 +16,12 @@ class SheduleController extends Controller
     public function index()
     {
         $shedule = new Shedule;
-        dd($shedule->index());
+        $user = User::where('id', '=', 1)->get();
+        dd(Auth()->user()->assignRole('teacher'));
+        // dd(Auth()->user());
+
+        // return view('teacher.index', ['user'=>new User]);
+        // dd($shedule->index());
     }
 
     /**
