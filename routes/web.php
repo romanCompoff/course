@@ -24,6 +24,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/shedule', [App\Http\Controllers\SheduleController::class, 'index'])->name('shedule');
 
+Route::middleware(['role:teacher'])->prefix('administrator')->group( function () {
+    Route::resource('courses',  LCourseController::Class);
+});
 Route::middleware(['role:admin'])->prefix('administrator')->group( function () {
    Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index']);
+   Route::get('/teacher', [App\Http\Controllers\Admin\TeacherController::class, 'index'])->name('teacher');
+   Route::get('/teacher/create/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'create'])->name('teacher.create');
+   Route::get('/teacher/{id}/edit', [App\Http\Controllers\Admin\TeacherController::class, 'edit'])->name('teacher.edit');
+   Route::get('/teacher/update/', [App\Http\Controllers\Admin\TeacherController::class, 'update'])->name('teacher.update');
 });
