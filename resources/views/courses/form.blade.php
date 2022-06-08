@@ -11,7 +11,8 @@
     <div class="col-12">
         <div class="card card-primary">
             <div class="alert alert-info" role="alert">
-                {{$notice}}
+                {{$notice}}              {{session('success')}}
+
             </div>
             <form method="POST" action="{{route('courses.store')}}" enctype="multipart/form-data">
                 @csrf
@@ -56,6 +57,18 @@
 
                   </select>
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Картинка</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile" name="img">
+                        <label class="custom-file-label" for="exampleInputFile">Выбрать файл</label>
+                      </div>
+                      {{-- <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div> --}}
+                    </div>
+                  </div>
 
               </div>
               <!-- /.card-body -->

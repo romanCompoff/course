@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\LCourse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 // use App\Models\User;
 
 
@@ -32,6 +34,7 @@ class LCourseController extends Controller
         $lvl = $crs->getLvl();
         $groups = $crs->getGroups();
         $teacher = ['id' => Auth()->user()->id, 'name' => Auth()->user()->name] ;
+
         return view('courses.form', [
             'shedules'=>$shedules,
             'teacher' => $teacher,
@@ -50,8 +53,15 @@ class LCourseController extends Controller
     public function store(Request $request)
     {
         $crs = new Lcourse;
+        // $result = $crs->store($request);
+
+        $res = $request->img->move(Storage::path('../../public/img-courses/'), $request->name .
+        '.'
+        . explode('.', $request->img->getClientOriginalName())[1]);
         $result = $crs->store($request);
-        dd($result);
+
+        return redirect()->back()->withSuccess('Добавлено');
+
     }
 
     /**

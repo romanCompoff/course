@@ -20,7 +20,7 @@ class LCourse extends Model
 
     public function getLvl()
     {
-        return DB::table('lvl_lang')->select('id', 'description ')->get();
+        return DB::table('lvl_lang')->select('id', 'description')->get();
     }
 
     public function getGroups()
@@ -32,6 +32,7 @@ class LCourse extends Model
     {
         $param = $request->toArray();
         unset($param['_token']);
+        unset($param['img']);
         return DB::table($this->table)->insert($param);
     }
 }
