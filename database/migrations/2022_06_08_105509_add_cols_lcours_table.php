@@ -20,6 +20,7 @@ class AddColsLcoursTable extends Migration
             $table->foreignId('group_id');
             $table->string('name');
             $table->string('description');
+            $table->string('img');
             $table->foreign('shedule_id')
             ->references('id')
             ->on('shedules');

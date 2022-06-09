@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function(){
-   return view('webuni.index');
-});
+Route::get('/', [App\Http\Controllers\LCourseController::class, 'homePage']);
 
 Route::get('/111', 'CourseController@index');
 

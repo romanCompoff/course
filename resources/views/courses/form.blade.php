@@ -57,6 +57,7 @@
 
                   </select>
                 </div>
+
                 <div class="form-group">
                     <label for="exampleInputFile">Картинка</label>
                     <div class="input-group">

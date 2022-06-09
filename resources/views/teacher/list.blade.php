@@ -45,7 +45,7 @@
                             @if(!$user['isTeacher'])
                             <a href="{{route('teacher.create', ['id' => $user['id']])}}" class="btn btn-warning">Сделать учителем</a>
                             @else
-                            <a href="{{route('teacher.edit', ['id' => $user['id']])}}" class="btn btn-warning">Редактировать учителя</a>
+                            <a href="{{route('teacher.edit', ['id' => $user['tId']])}}" class="btn btn-warning">Редактировать учителя</a>
                             @endif
                         </td>
                       </tr>

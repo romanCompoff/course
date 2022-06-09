@@ -16,7 +16,8 @@ class TeacherController extends Controller
      */
     public function index($notice = '')
     {
-        $users = User::get();
+        $users = User::leftJoin('teachers', "teachers.users_id", "=", 'users.id')->
+        select('*', 'users.id as id', 'teachers.id as tId')->get();
         foreach ($users as $key => $value) {
             $users[$key]['isTeacher'] = $value->hasRole('teacher');
         }
@@ -73,6 +74,8 @@ class TeacherController extends Controller
         $teacherData = $teacher->getData($request);
         $specData = $teacher->getSpecialisation($request);
 
+        // dd($teacherData);
+
         return view('teacher.form', ['user'=>$teacherData, 'notice'=>$notice, 'spec'=>$specData]);
     }
 
@@ -87,6 +90,7 @@ class TeacherController extends Controller
     {
         $teacher = new Teacher;
         $result = $teacher->update($request);
+        // dd($result);
 
         return $this->index( $result);
     }

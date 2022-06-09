@@ -32,6 +32,16 @@ class Teacher extends Model
 
     }
 
+    // public  function getUsers()
+    // {
+    //     $result = DB::table('users')
+    //     ->leftJoin($this->table, 'users.id', '=', "$this->table.users_id")
+    //     ->select('*', 'id as')
+    //     ->get();
+    //     return $result;
+    // }
+    
+
     public function getData($teacher_id)
     {
         $result = DB::table($this->table)

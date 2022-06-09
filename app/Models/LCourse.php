@@ -28,11 +28,22 @@ class LCourse extends Model
         return DB::table('groups')->select('id', 'name')->get();
     }
 
+    public function getTeacherByUserId($uId)
+    {
+        return DB::table('teachers')->select('id')->where('users_id', $uId)->get();
+    }
+
     public function store($request)
     {
         $param = $request->toArray();
         unset($param['_token']);
-        unset($param['img']);
-        return DB::table($this->table)->insert($param);
+        $param['img'] = $param['img']->getClientOriginalName();
+        DB::table($this->table)->insert($param);
+        return DB::getPdo()->lastInsertId();
+    }
+
+    public function getCourses()
+    {
+        return DB::table($this->table)->get();
     }
 }

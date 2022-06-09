@@ -18,8 +18,18 @@ class LCourseController extends Controller
      */
     public function index()
     {
-        dd(Auth()->user()->name);
-        return ;
+        $crs = new Lcourse;
+        $courses = $crs->getCourses();
+        // dd(Auth()->user()->name);
+
+        return view('courses.list', ['courses'=>$courses]) ;
+    }
+
+    public function homePage()
+    {
+        $lc = new LCourse;
+        $courseList = $lc->getCourses();
+        return view('courses.main', ['course'=>$courseList]);
     }
 
     /**
@@ -33,7 +43,9 @@ class LCourseController extends Controller
         $shedules = $crs->getShedules();
         $lvl = $crs->getLvl();
         $groups = $crs->getGroups();
-        $teacher = ['id' => Auth()->user()->id, 'name' => Auth()->user()->name] ;
+        $teacher['id'] = $crs->getTeacherByUserId( Auth()->user()->id );
+        $teacher['id'] = $teacher['id'][0]->id;
+        $teacher['name'] = Auth()->user()->name ;
 
         return view('courses.form', [
             'shedules'=>$shedules,
@@ -53,12 +65,9 @@ class LCourseController extends Controller
     public function store(Request $request)
     {
         $crs = new Lcourse;
-        // $result = $crs->store($request);
-
-        $res = $request->img->move(Storage::path('../../public/img-courses/'), $request->name .
-        '.'
-        . explode('.', $request->img->getClientOriginalName())[1]);
-        $result = $crs->store($request);
+        $id = $crs->store($request);
+        $name = $request->img->getClientOriginalName();
+        $res = $request->img->move(Storage::path('../../public/img-courses/') . $id , $name);
 
         return redirect()->back()->withSuccess('Добавлено');
 
