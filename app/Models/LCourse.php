@@ -28,6 +28,11 @@ class LCourse extends Model
         return DB::table('groups')->select('id', 'name')->get();
     }
 
+    public function getCathegoryes()
+    {
+        return DB::table('cathegoryes')->select('id', 'name', 'img')->get();
+    }
+
     public function getTeacherByUserId($uId)
     {
         return DB::table('teachers')->select('id')->where('users_id', $uId)->get();
@@ -45,5 +50,15 @@ class LCourse extends Model
     public function getCourses()
     {
         return DB::table($this->table)->get();
+    }
+
+    public function getOneCourse(string $id)
+    {
+        return DB::table($this->table)->find($id);
+    }
+
+    public function getOneCathegory(string $id)
+    {
+        return DB::table('cathegoryes')->find($id);
     }
 }

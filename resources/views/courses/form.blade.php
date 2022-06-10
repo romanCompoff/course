@@ -34,7 +34,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Уровень</label>
+                  <label for="">Уровень</label>
                   <select name="lvl_id" id="" class="form-select form-select-lg" style="width:100%">
                       @foreach($lvl as $sp)
                       <option value="{{$sp->id}}">{{$sp->description}}</option>
@@ -42,7 +42,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Группа</label>
+                  <label for="">Группа</label>
                   <select name="group_id" id="" class="form-select form-select-lg" style="width:100%">
                       @foreach($groups as $sp)
                       <option value="{{$sp->id}}">{{$sp->name}}</option>
@@ -50,11 +50,19 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Преподаватель</label>
+                  <label for="">Преподаватель</label>
                   <select name="teacher_id" id="" class="form-select form-select-lg" style="width:100%">
 
                       <option value="{{$teacher['id']}}">{{$teacher['name']}}</option>
 
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="">Категория</label>
+                  <select name="cathegory_id" id="" class="form-select form-select-lg" style="width:100%">
+                    @foreach($cathegory as $cgr)
+                      <option value="{{$cgr->id}}">{{$cgr->name}}</option>
+                    @endforeach
                   </select>
                 </div>
 

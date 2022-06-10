@@ -33,7 +33,8 @@
                     </thead>
                     <tbody>
                         @php
-
+// var_dump($users[0]['id']);
+// die;
                         @endphp
                         @foreach($users as $user)
                       <tr>

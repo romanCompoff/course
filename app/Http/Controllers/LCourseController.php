@@ -28,8 +28,10 @@ class LCourseController extends Controller
     public function homePage()
     {
         $lc = new LCourse;
-        $courseList = $lc->getCourses();
-        return view('courses.main', ['course'=>$courseList]);
+        $cathegoryes = $lc->getCathegoryes();
+
+
+        return view('courses.main', ['cathegoryes'=>$cathegoryes]);
     }
 
     /**
@@ -43,6 +45,7 @@ class LCourseController extends Controller
         $shedules = $crs->getShedules();
         $lvl = $crs->getLvl();
         $groups = $crs->getGroups();
+        $cathegoryes = $crs->getCathegoryes();
         $teacher['id'] = $crs->getTeacherByUserId( Auth()->user()->id );
         $teacher['id'] = $teacher['id'][0]->id;
         $teacher['name'] = Auth()->user()->name ;
@@ -52,7 +55,8 @@ class LCourseController extends Controller
             'teacher' => $teacher,
             'notice'=>'',
             'groups'=>$groups,
-            'lvl'=>$lvl
+            'lvl'=>$lvl,
+            'cathegory'=>$cathegoryes
         ]);
     }
 
@@ -116,5 +120,14 @@ class LCourseController extends Controller
     public function destroy(LCourse $lCourse)
     {
         //
+    }
+
+
+    public function oneCourse(Request $request)
+    {
+        $cs = new LCourse;
+        $data = $cs->getOneCathegory($request['id']);
+
+        return view('courses.one', ['cathegory'=>$data]);
     }
 }
