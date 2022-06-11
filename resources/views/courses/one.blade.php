@@ -6,8 +6,49 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
+            <div class="categoryList">
+                {!! $cathegory->test !!}
+            </div>
+        
+            <div class="coursesList d-none">
+                <section class="categories-section spad">
+                    <div class="">
+                       <div class="section-title">
+                          <h2>Наиболее подходящие курсы</h2>
+                          <p>Мы подобрали курсы, которые подходят вам исходя из результатов тестирования.</p>
+                       </div>
+                       <div id="lvl-courses" class="row "></div>
+                       <div class="section-title">
+                          <h2>Остальные курсы категории</h2>
+                          <p>Выбрать курсы без учета результатов теста.</p>
+                       </div>
+                       <div id="all-courses" class="row "></div>
+                       <div class="row">
+                          <!-- categorie -->
+                          @foreach($courses as $css)
+                          <div class="col-lg-4 col-md-6 oneCourse" data-level="{{$css->lvl_id}}">
+                             <div class="categorie-item">
+                                <div class="ci-thumb set-bg" data-setbg="/img-courses/{{$css->img}}"></div>
+                                <div class="ci-text">
+                                   <h5>{{$css->name}}</h5>
+                                   <hr>
+                                   <a style="width:100%" class="btn btn-success" href="{{ route('one-course', ['id'=>$css->id]) }}">Смотреть курсы</a>
+                                   @role('user')
+                                   <hr>
+                                   {{-- <a style="width:100%" class="btn btn-success" href="{{ route('passport') }}">Купить курс</a> --}}
+                                   @endrole
+                                </div>
+                             </div>
+                          </div>
+                          @endforeach
+                 
+                 
+                       </div>
+                    </div>
+                 </section>
+            </div>
+        
 
-{!! $cathegory->test !!}
         </div>
     </div>
 </div>

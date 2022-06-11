@@ -127,7 +127,9 @@ class LCourseController extends Controller
     {
         $cs = new LCourse;
         $data = $cs->getOneCathegory($request['id']);
+        $courses = $cs->getCourses();
 
-        return view('courses.one', ['cathegory'=>$data]);
+
+        return view('courses.one', ['cathegory'=>$data, 'courses'=>$courses]);
     }
 }
