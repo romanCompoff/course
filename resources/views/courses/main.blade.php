@@ -3,7 +3,7 @@
 @section('title', 'Главная')
 
 @section('block2')
-<section id="block2">
+<section id="block2" class="container">
     <div class="row">
         <div class="col-12 col-md-6"><img src="/webuni/img/works/1.jpg" alt="">
     <h3>1. Теория</h3>

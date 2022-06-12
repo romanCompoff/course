@@ -10,8 +10,10 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form>
+                <form method="POST" action="{{ route('add-student') }}">
+                    @csrf
                     <input type="hidden" name="user_id" value={{$user_id}}>
+                    <input type="hidden" name="course_id" value={{$course_id}}>
                   <div class="card-body">
                     <div class="form-group">
                       <label for="passp_number">Номер паспорта</label>

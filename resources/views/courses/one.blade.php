@@ -1,6 +1,6 @@
 @extends('webuni.index')
 
-@section('title', 'Главная')
+@section('title', 'Просмотр курсов категории')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
             <div class="categoryList">
                 {!! $cathegory->test !!}
             </div>
-        
+
             <div class="coursesList d-none">
                 <section class="categories-section spad">
                     <div class="">
@@ -32,7 +32,7 @@
                                 <div class="ci-text">
                                    <h5>{{$css->name}}</h5>
                                    <hr>
-                                   <a style="width:100%" class="btn btn-success" href="{{ route('one-course', ['id'=>$css->id]) }}">Смотреть курсы</a>
+                                   <a style="width:100%" class="btn btn-success" href="{{ route('passport', ['id'=>$css->id]) }}">Купить курс</a>
                                    @role('user')
                                    <hr>
                                    {{-- <a style="width:100%" class="btn btn-success" href="{{ route('passport') }}">Купить курс</a> --}}
@@ -41,13 +41,13 @@
                              </div>
                           </div>
                           @endforeach
-                 
-                 
+
+
                        </div>
                     </div>
                  </section>
             </div>
-        
+
 
         </div>
     </div>

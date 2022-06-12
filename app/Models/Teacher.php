@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-
 class Teacher extends Model
 {
     use HasFactory;
@@ -40,7 +39,7 @@ class Teacher extends Model
     //     ->get();
     //     return $result;
     // }
-    
+
 
     public function getData($teacher_id)
     {
