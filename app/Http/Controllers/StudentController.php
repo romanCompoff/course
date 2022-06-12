@@ -19,7 +19,12 @@ class StudentController extends Controller
     {
         try{
             $request->validate([
-                'user_id' => 'required|integer'
+                'user_id' => 'required|integer',
+                'passp_number' => 'required|max:10',
+                'passp_city' => 'required|max:20',
+                'passp_adress' => 'required|max:255',
+                'passp_adrss_mfc' => 'required|max:255',
+                'passp_date' => 'required|date',
             ]);
             $st = new Student;
             $grpId = $st->getGroup($request->course_id);
@@ -30,7 +35,7 @@ class StudentController extends Controller
             if($isStudent){
                 return redirect()->back()->withErrors('Вы купили этот курс ранее');
             }
-            $st->addStudent($request);
+            $st->addStudent($request, $gId);
 
         } catch(  Throwable  $e ){
             dump($e);

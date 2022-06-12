@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\HelperModel;
+
 
 class Student extends Model
 {
@@ -31,10 +33,15 @@ class Student extends Model
         ->exists();
     }
 
-    public function addStudent($request)
+    public function addStudent($request, $gId)
    {
-       unset($request->_token);
-    dd($request);
+        $data = HelperModel::removeToken($request);
+        $res = DB::table('usersBig')->insert(['groupe-id'=>$gId, 'user-id'=>$data['user_id'] ]);
+        if(!$res){return false;}
+        unset($data['course_id']);
+        $res = DB::table('requisites')->insert($data);
+        return $res;
+
    }
 
 
