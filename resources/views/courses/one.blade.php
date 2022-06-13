@@ -7,7 +7,9 @@
     <div class="row">
         <div class="col-12">
             <div class="categoryList">
+               @role('student')
                 {!! $cathegory->test !!}
+                @endrole
             </div>
 
             <div class="coursesList d-none">

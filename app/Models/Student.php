@@ -33,6 +33,13 @@ class Student extends Model
         ->exists();
     }
 
+    public function groupCount($id)
+    {
+        return DB::table('usersBig')
+        ->where('groupe-id', '=', $id)
+        ->count();
+    }
+
     public function addStudent($request, $gId)
    {
         $data = HelperModel::removeToken($request);

@@ -9,7 +9,7 @@ class HelperModel extends Model
 {
     use HasFactory;
 
-    public function removeToken($request)
+    public static function removeToken($request)
     {
         $param = $request->toArray();
         unset($param['_token']);

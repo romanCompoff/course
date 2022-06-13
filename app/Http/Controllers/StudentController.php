@@ -31,30 +31,26 @@ class StudentController extends Controller
             $request->group_id = $grpId;
             $v = Validator::make(['group_id' => $grpId->group_id], ['group_id' => 'required|integer']);
             $gId = $v->validated()['group_id'];
+            $groupCount = $st->groupCount($gId);
+            if($groupCount >= 9){
+                return redirect()->back()->withErrors('Группа заполнена');
+            }
             $isStudent = $st->isStudent($gId, $request->user_id);
             if($isStudent){
                 return redirect()->back()->withErrors('Вы купили этот курс ранее');
             }
             $st->addStudent($request, $gId);
+                return redirect()->back()->withSuccess('Курс добавлен');
 
         } catch(  Throwable  $e ){
             dump($e);
 
         }
+    }
 
-
-
-        $request->validate([
-            'group_id'=>'required|min:2',
-            'user_id' => 'required|min:2',
-            // 'passp_number' => 'required'
-
-        ]);
-
-
-        dd($request->validate);
-        // dd($result);
-
-        return view('study.add-student');
+    public function tests()
+    {
+        $model = new Lcourse;
+        $cathegoryes = $model->getCathegoryes();
     }
 }

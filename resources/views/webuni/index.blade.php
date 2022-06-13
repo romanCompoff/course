@@ -37,7 +37,9 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="site-logo">
-						<img src="/webuni/img/logo.png" alt="">
+						<a href="/">
+							<img src="/webuni/img/logo.png" alt="">
+						</a>
 					</div>
 					<div class="nav-switch">
 						<i class="fa fa-bars"></i>
@@ -47,11 +49,11 @@
 					<a href="{{ route('login') }}" class="site-btn header-btn">Вход</a>
 					<nav class="main-menu">
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="{{ route('home') }}">Домой</a></li>
 							<li><a href="#">About us</a></li>
 							<li><a href="courses.html">Courses</a></li>
 							<li><a href="blog.html">News</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="{{route('tests')}}">Тестирование</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -85,6 +87,9 @@
      </ul>
 </div>
 @endif
+@if(session('success'))
+	<div class="alert alert-success">{{session('success')}}</div>
+@endif
 
 	<!-- Hero section end -->
 @yield('block2')
@@ -96,7 +101,7 @@
 
 
 	<!-- search section -->
-	<section class="search-section">
+	{{-- <section class="search-section">
 		<div class="container">
 			<div class="search-warp">
 				<div class="section-title text-white">
@@ -114,12 +119,12 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- search section end -->
 
 
 	<!-- course section -->
-	<section class="course-section spad">
+	{{-- <section class="course-section spad">
 		<div class="container">
 			<div class="section-title mb-0">
 				<h2>Featured Courses</h2>
@@ -289,12 +294,12 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- course section end -->
 
 
 	<!-- signup section -->
-	<section class="signup-section spad">
+	{{-- <section class="signup-section spad">
 		<div class="signup-bg set-bg" data-setbg="/webuni/img/signup-bg.jpg"></div>
 		<div class="container-fluid">
 			<div class="row">
@@ -317,12 +322,12 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- signup section end -->
 
 
 	<!-- banner section -->
-	<section class="banner-section spad">
+	{{-- <section class="banner-section spad">
 		<div class="container">
 			<div class="section-title mb-0 pb-2">
 				<h2>Join Our Community Now!</h2>
@@ -332,7 +337,7 @@
 				<a href="#" class="site-btn">Register Now</a>
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- banner section end -->
 
 

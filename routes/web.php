@@ -28,6 +28,7 @@ Route::middleware(['role:user'])->prefix('courses')->group( function () {
 Route::middleware(['role:user'])->prefix('user')->group( function () {
     Route::get('/passport/{id}', [App\Http\Controllers\StudentController::class, 'passport'])->name('passport');
     Route::post('/add-student', [App\Http\Controllers\StudentController::class, 'checkAndAdd'])->name('add-student');
+    Route::post('/tests', [App\Http\Controllers\StudentController::class, 'tests'])->name('tests');
 });
 Route::middleware(['role:student'])->prefix('study')->group( function () {
 
