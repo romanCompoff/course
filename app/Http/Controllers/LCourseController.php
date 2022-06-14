@@ -20,6 +20,7 @@ class LCourseController extends Controller
     {
         $crs = new Lcourse;
         $courses = $crs->getCourses();
+
         // dd(Auth()->user()->name);
 
         return view('courses.list', ['courses'=>$courses]) ;
@@ -29,9 +30,9 @@ class LCourseController extends Controller
     {
         $lc = new LCourse;
         $cathegoryes = $lc->getCathegoryes();
+        $teachers = $lc->getTeachers();
 
-
-        return view('courses.main', ['cathegoryes'=>$cathegoryes]);
+        return view('courses.main', ['cathegoryes'=>$cathegoryes, 'teachers'=>$teachers]);
     }
 
     /**
@@ -68,7 +69,7 @@ class LCourseController extends Controller
      */
     public function store(Request $request)
     {
-        $crs = new Lcourse;
+        $crs = new LCourse;
         $id = $crs->store($request);
         $name = $request->img->getClientOriginalName();
         $res = $request->img->move(Storage::path('../../public/img-courses/') . $id , $name);
@@ -132,4 +133,26 @@ class LCourseController extends Controller
 
         return view('courses.one', ['cathegory'=>$data, 'courses'=>$courses]);
     }
+
+    public function tests()
+    {
+        $model = new LCourse;
+        $cathegoryes = $model->getCathegoryes();
+        return view('courses.tests', ['cathegoryes' => $cathegoryes]);
+    }
+
+    public function courses()
+    {
+        $model = new LCourse;
+        $cathegoryes = $model->getCathegoryes();
+        return view('courses.coursesAll', ['cathegoryes'=>$cathegoryes]);
+
+    }
+
+    public function courseInCathegory(Request $request)
+    {
+        $model = new LCcourse;
+        $courses = $model->getCoursesOfCathegory($request->id);
+    }
+
 }

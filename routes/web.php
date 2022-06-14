@@ -24,11 +24,13 @@ Route::get('/shedule', [App\Http\Controllers\SheduleController::class, 'index'])
 
 Route::middleware(['role:user'])->prefix('courses')->group( function () {
     Route::get('/{id}', [App\Http\Controllers\LCourseController::class, 'oneCourse'])->name('one-course');
+    Route::get('course/{id}', [App\Http\Controllers\LCourseController::class, 'courseInCathegory'])->name('courseInCathegory');
 });
 Route::middleware(['role:user'])->prefix('user')->group( function () {
     Route::get('/passport/{id}', [App\Http\Controllers\StudentController::class, 'passport'])->name('passport');
     Route::post('/add-student', [App\Http\Controllers\StudentController::class, 'checkAndAdd'])->name('add-student');
-    Route::post('/tests', [App\Http\Controllers\StudentController::class, 'tests'])->name('tests');
+    Route::get('/tests', [App\Http\Controllers\LCourseController::class, 'tests'])->name('tests');
+    Route::get('/courses', [App\Http\Controllers\LCourseController::class, 'courses'])->name('courses');
 });
 Route::middleware(['role:student'])->prefix('study')->group( function () {
 

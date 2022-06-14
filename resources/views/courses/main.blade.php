@@ -37,8 +37,8 @@
 <section class="categories-section spad">
    <div class="container">
       <div class="section-title">
-         <h2>Our Course Categories</h2>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+         <h2>Категории курсов</h2>
+         <p>Выберите необходимую категорию.</p>
       </div>
       <div class="row">
          <!-- categorie -->
@@ -50,17 +50,23 @@
                   <h5>{{$css->name}}</h5>
                   <hr>
                   <a style="width:100%" class="btn btn-success" href="{{ route('one-course', ['id'=>$css->id]) }}">Смотреть курсы</a>
-                  @role('user')
-                  <hr>
-                  {{-- <a style="width:100%" class="btn btn-success" href="{{ route('passport') }}">Купить курс</a> --}}
-                  @endrole
                </div>
             </div>
          </div>
          @endforeach
-
-
       </div>
    </div>
+</section>
+<section class="container">
+    <h2>Список учителей</h2>
+    <div class="row">
+        <div class="col-12">
+            <ul>
+                @foreach ($teachers as $item)
+                    <li>{{$item->name}} {{$item->email}}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
 </section>
 @endsection

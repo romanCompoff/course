@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\LCourse;
 
 
 class StudentController extends Controller
@@ -48,9 +49,5 @@ class StudentController extends Controller
         }
     }
 
-    public function tests()
-    {
-        $model = new Lcourse;
-        $cathegoryes = $model->getCathegoryes();
-    }
+
 }

@@ -34,7 +34,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('home') }}" class="brand-link">
+    <a href="/" class="brand-link">
       <img src="/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -54,6 +54,15 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Выбрать учителя
+                {{-- <span class="right badge badge-danger">New</span> --}}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://docs.google.com/spreadsheets/d/1MJ8lwD2AajKNDhVI9TWdcZn-jLZm8hXTNXiWUDH-9fw/edit#gid=172286560" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Статистика
                 {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>

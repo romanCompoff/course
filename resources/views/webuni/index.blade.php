@@ -49,10 +49,10 @@
 					<a href="{{ route('login') }}" class="site-btn header-btn">Вход</a>
 					<nav class="main-menu">
 						<ul>
-							<li><a href="{{ route('home') }}">Домой</a></li>
-							<li><a href="#">About us</a></li>
-							<li><a href="courses.html">Courses</a></li>
-							<li><a href="blog.html">News</a></li>
+							{{-- <li><a href="{{ route('home') }}">Домой</a></li> --}}
+							<li><a href="#">О нас</a></li>
+							<li><a href="{{ route('courses') }}">Курсы</a></li>
+							{{-- <li><a href="{{ route('tests') }}">Образовательные материалы</a></li> --}}
 							<li><a href="{{route('tests')}}">Тестирование</a></li>
 						</ul>
 					</nav>

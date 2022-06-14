@@ -38,6 +38,13 @@ class LCourse extends Model
         return DB::table('teachers')->select('id')->where('users_id', $uId)->get();
     }
 
+    public function getTeachers()
+    {
+        return DB::table('teachers')
+        ->join('users', 'teachers.users_id', '=', 'users.id')
+        ->get();
+    }
+
     public function store($request)
     {
         $param = $request->toArray();
@@ -45,6 +52,11 @@ class LCourse extends Model
         $param['img'] = $param['img']->getClientOriginalName();
         DB::table($this->table)->insert($param);
         return DB::getPdo()->lastInsertId();
+    }
+
+    public function getCoursesOfCathegory($id)
+    {
+        return DB::table($this->table)->where('cathegory_id', '=', $id)->get();
     }
 
     public function getCourses()
