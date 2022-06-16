@@ -37,6 +37,7 @@ Route::middleware(['role:student'])->prefix('study')->group( function () {
 });
 Route::middleware(['role:teacher'])->prefix('administrator')->group( function () {
     Route::resource('courses',  LCourseController::Class);
+    Route::resource('matherials',  MatherialController::Class);
 });
 Route::middleware(['role:admin'])->prefix('administrator')->group( function () {
    Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('administrator');

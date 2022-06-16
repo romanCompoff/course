@@ -45,7 +45,6 @@ class LCourseController extends Controller
         $crs = new LCourse;
         $shedules = $crs->getShedules();
         $lvl = $crs->getLvl();
-        // $groups = $crs->getGroups();
         $cathegoryes = $crs->getCathegoryes();
         $teacher['id'] = $crs->getTeacherByUserId( Auth()->user()->id );
         $teacher['id'] = $teacher['id'][0]->id;
@@ -55,7 +54,6 @@ class LCourseController extends Controller
             'shedules'=>$shedules,
             'teacher' => $teacher,
             'notice'=>'',
-            // 'groups'=>$groups,
             'lvl'=>$lvl,
             'cathegory'=>$cathegoryes
         ]);

@@ -93,6 +93,32 @@
 
             </ul>
           </li>
+          <li class="nav-item menu-is-opening menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Материалы
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">6</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              <li class="nav-item">
+                <a href="{{ route('matherials.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Список</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('matherials.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Добавить</p>
+                </a>
+              </li>
+
+
+            </ul>
+          </li>
 
         </ul>
       </nav>
