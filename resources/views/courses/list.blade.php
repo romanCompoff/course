@@ -3,13 +3,13 @@
 @section('title', 'Список курсов')
 
 @section('content')
-<div class="content-wrapper">
+<div>
    <!-- Content Header (Page header) -->
    <div class="content-header">
      <div class="container-fluid">
 <div class="row">
    <div class="col-12">
- 
+
 <ul>
 @foreach($courses as $cs)
 

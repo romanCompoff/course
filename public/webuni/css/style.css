@@ -2,7 +2,7 @@
 ------------------------------------
   WebUni - Education Template
   Version: 1.0
- ------------------------------------ 
+ ------------------------------------
  ====================================*/
 
 /*----------------------------------------*/
@@ -1767,4 +1767,42 @@ ol {
 #block2{
 	padding: 20px;
 	text-align: center;
+}
+.owl-carousel.owl-loaded.owl-drag{
+    text-align: center;
+}
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-next
+{
+    margin:15px;
+}
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-dot {
+    border:0;
+    margin: 5px;
+
+}
+.owl-carousel .owl-dot.active{
+    background-color:blue;
+}
+.owl-carousel .owl-dot{
+    border-radius:10px;
+    height: 10px;
+}
+.owl-carousel .owl-nav.disabled,
+.owl-carousel .owl-dots.disabled{
+    display: inherit;
+}
+.owl-carousel div.owl-item .teacher{
+    -webkit-box-shadow: 0 0 13px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 0 13px rgba(0, 0, 0, 0.25);
+    margin: 15px;
+    padding: 10px;
+    border-radius:5px;
+}
+.owl-carousel .owl-item img{
+    width: 30%;
+    margin: auto;
+
 }

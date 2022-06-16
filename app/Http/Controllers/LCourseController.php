@@ -45,7 +45,7 @@ class LCourseController extends Controller
         $crs = new LCourse;
         $shedules = $crs->getShedules();
         $lvl = $crs->getLvl();
-        $groups = $crs->getGroups();
+        // $groups = $crs->getGroups();
         $cathegoryes = $crs->getCathegoryes();
         $teacher['id'] = $crs->getTeacherByUserId( Auth()->user()->id );
         $teacher['id'] = $teacher['id'][0]->id;
@@ -55,7 +55,7 @@ class LCourseController extends Controller
             'shedules'=>$shedules,
             'teacher' => $teacher,
             'notice'=>'',
-            'groups'=>$groups,
+            // 'groups'=>$groups,
             'lvl'=>$lvl,
             'cathegory'=>$cathegoryes
         ]);
@@ -70,7 +70,27 @@ class LCourseController extends Controller
     public function store(Request $request)
     {
         $crs = new LCourse;
-        $id = $crs->store($request);
+        if(!isset($request->group) || !is_string($request->group)){
+            return redirect()->back()->withErrors('Неправильное значение группы');
+        }
+        $groupId = +$crs->addGroup($request->group);
+        $groupId = ( $groupId != 0 && is_int($groupId) ) ? ['group_id'=>$groupId] : false;
+        if(!$groupId){
+            return redirect()->back()->withErrors('Ошибка добавления группы');
+        }
+        $request->validate([
+            'description'=>'string|required|max:255',
+            'img'=>'required',
+            'name'=>'string|required|max:255',
+            'lvl_id'=>'integer|required',
+            'teacher_id'=>'integer|required',
+            'shedule_id'=>'integer|required'
+        ]);
+        $data = array_merge($request->all(), $groupId);
+        $id = +$crs->store($data);
+        if(!isset($id) || !is_int($id)){
+            return redirect()->back()->withErrors('При добавлениие курса вернулся неожиданный результат. Изображение не добавлено!');
+        }
         $name = $request->img->getClientOriginalName();
         $res = $request->img->move(Storage::path('../../public/img-courses/') . $id , $name);
 
@@ -151,8 +171,10 @@ class LCourseController extends Controller
 
     public function courseInCathegory(Request $request)
     {
-        $model = new LCcourse;
+        $model = new LCourse;
         $courses = $model->getCoursesOfCathegory($request->id);
+
+        return view('courses.coursesAll', ['courses'=>$courses]);
     }
 
 }

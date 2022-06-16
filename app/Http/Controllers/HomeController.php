@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\LCourse;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user_id = Auth()->user()->id;
+        $v = Validator::make(['user_id' => $user_id], ['user_id' => 'required|integer']);
+        $uId = $v->validated()['user_id'];
+        $model = new LCourse;
+        $usersCourses = $model->coursesOfUser($uId);
+
+        return view('home', ['usersCourses'=>$usersCourses]);
     }
 }

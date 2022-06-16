@@ -3,7 +3,7 @@
 @section('title', 'Добавить курс')
 
 @section('content')
-<div class="content-wrapper">
+<div >
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -42,13 +42,17 @@
                   </select>
                 </div>
                 <div class="form-group">
+                    <label for="">Группа</label>
+                    <input type="text" name="group" class="form-control" placeholder="Имя группы нового курса">
+                </div>
+                {{-- <div class="form-group">
                   <label for="">Группа</label>
                   <select name="group_id" id="" class="form-select form-select-lg" style="width:100%">
                       @foreach($groups as $sp)
                       <option value="{{$sp->id}}">{{$sp->name}}</option>
                       @endforeach
                   </select>
-                </div>
+                </div> --}}
                 <div class="form-group">
                   <label for="">Преподаватель</label>
                   <select name="teacher_id" id="" class="form-select form-select-lg" style="width:100%">

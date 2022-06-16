@@ -100,8 +100,29 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+  <div class="content-wrapper" style="min-height:0">
+      <div class="row">
+          <div class="col-12">
+            <div class="">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                     </ul>
+                </div>
+                @endif
+                @if(session('success'))
+                    <div class="alert alert-success">{{session('success')}}</div>
+                @endif
+            </div>
+          </div>
+      </div>
+      @yield('content')
+  </div>
 
- @yield('content')
+
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.

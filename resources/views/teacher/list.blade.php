@@ -3,7 +3,7 @@
 @section('title', 'Указать учителя')
 
 @section('content')
-<div class="content-wrapper">
+<div >
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">

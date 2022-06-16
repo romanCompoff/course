@@ -45,12 +45,21 @@ class LCourse extends Model
         ->get();
     }
 
-    public function store($request)
+    public function store($param)
     {
-        $param = $request->toArray();
+
         unset($param['_token']);
+        unset($param['group']);
         $param['img'] = $param['img']->getClientOriginalName();
         DB::table($this->table)->insert($param);
+
+        return DB::getPdo()->lastInsertId();
+    }
+
+    public function addGroup(string $name)
+    {
+        DB::table('groups')->insert(['name'=>$name]);
+
         return DB::getPdo()->lastInsertId();
     }
 
@@ -72,5 +81,13 @@ class LCourse extends Model
     public function getOneCathegory(string $id)
     {
         return DB::table('cathegoryes')->find($id);
+    }
+
+    public function coursesOfUser($id)
+    {
+        return DB::table('usersbig')
+        ->where('user-id', '=', $id)
+        ->join('l_courses', 'l_courses.group_id', 'usersbig.groupe-id')
+        ->get();
     }
 }

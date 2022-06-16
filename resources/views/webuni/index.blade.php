@@ -52,8 +52,11 @@
 							{{-- <li><a href="{{ route('home') }}">Домой</a></li> --}}
 							<li><a href="#">О нас</a></li>
 							<li><a href="{{ route('courses') }}">Курсы</a></li>
-							{{-- <li><a href="{{ route('tests') }}">Образовательные материалы</a></li> --}}
-							<li><a href="{{route('tests')}}">Тестирование</a></li>
+							<li><a href="{{ route('tests') }}">Материалы</a></li>
+							<li><a href="{{route('tests')}}">Тесты</a></li>
+                            @role('teacher')
+							<li><a href="{{route('administrator')}}">Админка</a></li>
+                            @endrole
 						</ul>
 					</nav>
 				</div>
@@ -418,5 +421,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="/webuni/js/circle-progress.min.js"></script>
 	<script src="/webuni/js/owl.carousel.min.js"></script>
 	<script src="/webuni/js/main.js"></script>
+	<script src="/owl/dist/owl.carousel.min.js"></script>
     @yield('scripts')
 </html>
