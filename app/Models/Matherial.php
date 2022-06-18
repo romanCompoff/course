@@ -27,4 +27,9 @@ class Matherial extends Model
     {
         return DB::table($this->table)->get();
     }
+
+    public function getTeacher($id)
+    {
+        return DB::table('teachers')->select('id')->where('users_id', $id)->first();
+    }
 }

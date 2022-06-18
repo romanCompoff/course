@@ -51,7 +51,7 @@
 						<ul>
 							{{-- <li><a href="{{ route('home') }}">Домой</a></li> --}}
 							<li><a href="#">О нас</a></li>
-							<li><a href="{{ route('courses') }}">Курсы</a></li>
+							<li><a href="{{ route('allcourses') }}">Курсы</a></li>
 							<li><a href="{{ route('tests') }}">Материалы</a></li>
 							<li><a href="{{route('tests')}}">Тесты</a></li>
                             @role('teacher')

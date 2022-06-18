@@ -21,8 +21,6 @@ class LCourseController extends Controller
         $crs = new Lcourse;
         $courses = $crs->getCourses();
 
-        // dd(Auth()->user()->name);
-
         return view('courses.list', ['courses'=>$courses]) ;
     }
 
@@ -104,7 +102,7 @@ class LCourseController extends Controller
      */
     public function show(LCourse $lCourse)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -113,9 +111,9 @@ class LCourseController extends Controller
      * @param  \App\Models\LCourse  $lCourse
      * @return \Illuminate\Http\Response
      */
-    public function edit(LCourse $lCourse)
+    public function edit(LCourse $course)
     {
-        //
+        return view('courses.edit', ['course'=>$course]);
     }
 
     /**
@@ -125,9 +123,22 @@ class LCourseController extends Controller
      * @param  \App\Models\LCourse  $lCourse
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LCourse $lCourse)
+    public function update(Request $request, LCourse $course)
     {
-        //
+    //    dd($request);
+               $request->validate([
+            'name'=>'required|string|max:255',
+            'description'=>'required|string|max:255'
+        ]);
+        if($request->picture){
+            $name = $request->img;
+            $res = $request->picture->move(Storage::path('../../public/img-courses/') . $request->id, $name);
+        }
+        $course->name = $request->name;
+        $course->description = $request->description;
+        $res = $course->save();
+
+        return redirect()->back()->withSuccess('Курс обновлен');
     }
 
     /**
@@ -136,10 +147,16 @@ class LCourseController extends Controller
      * @param  \App\Models\LCourse  $lCourse
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LCourse $lCourse)
+    public function destroy(LCourse $course)
     {
-        //
+        $res = $course->delete();
+        $path = Storage::path('../../public/img-courses/' . $course->id . '/');
+        $res = $this->removeFileAndDir($path);
+
+        return redirect()->back()->withSuccess('Удалено');
     }
+
+
 
 
     public function oneCourse(Request $request)
@@ -173,6 +190,13 @@ class LCourseController extends Controller
         $courses = $model->getCoursesOfCathegory($request->id);
 
         return view('courses.coursesAll', ['courses'=>$courses]);
+    }
+
+    public function allCourses()
+    {
+        $lc = new LCourse;
+        $cathegoryes = $lc->getCathegoryes();
+        return view('courses.allCourses', ['cathegoryes' => $cathegoryes]);
     }
 
 }

@@ -31,6 +31,7 @@ Route::middleware(['role:user'])->prefix('user')->group( function () {
     Route::post('/add-student', [App\Http\Controllers\StudentController::class, 'checkAndAdd'])->name('add-student');
     Route::get('/tests', [App\Http\Controllers\LCourseController::class, 'tests'])->name('tests');
     Route::get('/courses', [App\Http\Controllers\LCourseController::class, 'courses'])->name('courses');
+    Route::get('/allcourses', [App\Http\Controllers\LCourseController::class, 'allcourses'])->name('allcourses');
 });
 Route::middleware(['role:student'])->prefix('study')->group( function () {
 

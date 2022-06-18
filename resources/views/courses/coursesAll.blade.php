@@ -6,8 +6,8 @@
 <section class="categories-section spad">
     <div class="container">
        <div class="section-title">
-          <h2>Категории курсов</h2>
-          <p>Выберите необходимую категорию.</p>
+          <h2>Курсы</h2>
+          <p>Выберите необходимый курс.</p>
        </div>
        <div class="row">
           <!-- categorie -->

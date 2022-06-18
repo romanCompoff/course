@@ -17,7 +17,6 @@ class MatherialController extends Controller
     {
         $model = new Matherial;
         $materials = $model->getMaterials()->toArray();
-        // dd($materials);
         return view('matherials.index', ['materials' => $materials]);
     }
 
@@ -30,13 +29,14 @@ class MatherialController extends Controller
     {
         $model = new Matherial;
         $courses = $model->create()->all();
-        if (!$courses) {
+        $teacher = $model->getTeacher(Auth()->user()->id);
+        if (!$courses || !$teacher->id) {
             redirect()->back()->withErrors('Не найдены курсы. Невозможно добавить материал вне курса');
         }
         return view('matherials.form', [
-            'id' => Auth()->user()->id,
+            'id' => $teacher->id,
             'name' => Auth()->user()->name,
-            'courses' => $courses,
+            'courses' => $courses
         ]);
     }
 
@@ -74,7 +74,7 @@ class MatherialController extends Controller
      */
     public function show(Matherial $matherial)
     {
-        dd($matherial);
+        return abort(404);
     }
 
     /**
@@ -87,7 +87,6 @@ class MatherialController extends Controller
     {
 
         return view('matherials.edit', ['material'=>$matherial]);
-        dd($matherial);
     }
 
     /**
@@ -122,6 +121,9 @@ class MatherialController extends Controller
      */
     public function destroy(Matherial $matherial)
     {
-        //
+        $res = $matherial->delete();
+        $path = Storage::path('../../public/img-courses/' . $matherial->course_id . '/' . $matherial->id);
+        $res = $this->removeFileAndDir($path);
+        return redirect()->back()->withSuccess('Удалено');
     }
 }
