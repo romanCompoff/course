@@ -10,11 +10,20 @@ use App\Models\LCourse;
 
 class StudentController extends Controller
 {
+    protected $price = 10000;
     public function passport(Request $request)
     {
         $user_id = auth()->user()->id;
+        $model = new Student;
+        $isReq = $model->getRequisites($user_id);
+        if($isReq){
+            return $this->studyBuy($request->id);
+            
+        }
         return view('study.passport', ['user_id' => $user_id, 'course_id' => $request->id]);
     }
+
+
 
     public function checkAndAdd(Request $request)
     {
@@ -28,24 +37,51 @@ class StudentController extends Controller
                 'passp_date' => 'required|date',
             ]);
             $st = new Student;
-            $grpId = $st->getGroup($request->course_id);
-            $request->group_id = $grpId;
-            $v = Validator::make(['group_id' => $grpId->group_id], ['group_id' => 'required|integer']);
-            $gId = $v->validated()['group_id'];
-            $groupCount = $st->groupCount($gId);
-            if($groupCount >= 9){
-                return redirect()->back()->withErrors('Группа заполнена');
-            }
-            $isStudent = $st->isStudent($gId, $request->user_id);
-            if($isStudent){
-                return redirect()->back()->withErrors('Вы купили этот курс ранее');
-            }
-            $st->addStudent($request, $gId);
-                return redirect()->back()->withSuccess('Курс добавлен');
+            $st->addRequisites($request);
+            $this->studyBuy($request->course_id);
+                return ;
 
         } catch(  Throwable  $e ){
             dump($e);
 
+        }
+    }
+
+    public function oneCourse( Request $request)
+    {
+        $model = new Student;
+        $materials = $model->getMaterials($request->id);
+        
+        return view('study.onecourse', ['materials'=>$materials]);
+    }
+
+    public function studyBuy($id)
+    {
+        $model = new LCourse;
+        $course = $model->getOneCourse($id);
+    
+        return view('study.buy', ['course'=>$course]);
+    }
+
+    public function studyPay(Request $request)
+    {
+        $request->validate([
+            'time'=>'required|integer'
+        ]);
+        $money = $this->price * $request->time;
+        $month = time() + ($request->time * 60 * 60 * 24 * 30);
+        dd(date('Y-m-d', $month));
+        $grpId = +$st->getGroup($request->course_id);
+        if(!is_int($grpId) || $grpId == 0){
+            return redirect()->back()->withErrors('Не найдена группа');
+        }
+        $groupCount = $st->groupCount($grpId);
+        if($groupCount >= 9){
+            return redirect()->back()->withErrors('Группа заполнена');
+        }
+        $isStudent = $st->isStudent($gId, $request->user_id);
+        if($isStudent){
+            return redirect()->back()->withErrors('Вы купили этот курс ранее');
         }
     }
 

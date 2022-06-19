@@ -12,6 +12,8 @@ class Student extends Model
 {
     use HasFactory;
 
+    protected $table = 'materials';
+
     public function getGroup($course_id)
     {
         try{
@@ -45,10 +47,27 @@ class Student extends Model
         $data = HelperModel::removeToken($request);
         $res = DB::table('usersBig')->insert(['groupe-id'=>$gId, 'user-id'=>$data['user_id'] ]);
         if(!$res){return false;}
+        
+
+
+   }
+
+   public function addRequisites($request)
+   {
+        $data = HelperModel::removeToken($request);
         unset($data['course_id']);
         $res = DB::table('requisites')->insert($data);
         return $res;
+   }
 
+   public function getRequisites($id)
+   {
+       return DB::table('requisites')->where('user_id', $id)->first();
+   }
+
+   public function getMaterials($id)
+   {
+       return DB::table($this->table)->where('course_id', $id)->get();
    }
 
 

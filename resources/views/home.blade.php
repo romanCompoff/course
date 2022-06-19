@@ -24,7 +24,7 @@
                                   <div class="ci-text">
                                      <h5>{{$css->name}}</h5>
                                      <hr>
-                                     <a style="width:100%" class="btn btn-success" href="{{ route('passport', ['id'=>$css->id]) }}">Перейти</a>
+                                     <a style="width:100%" class="btn btn-success" href="{{ route('study.course', ['id'=>$css->id]) }}">Перейти</a>
                                   </div>
                                </div>
                             </div>
