@@ -36,8 +36,8 @@ class HomeController extends Controller
            $homeworks = $model->homeWorks($uc->id, $uc->passedMaterials, $uc->homeWork);
            array_push($arr, $homeworks->all());
         }
+        $res = $model->mainRat();
 
-        // dd($usersCourses);
-        return view('home', ['usersCourses'=>$usersCourses, 'homeWorks'=>$arr]);
+        return view('home', ['usersCourses'=>$usersCourses, 'homeWorks'=>$arr, 'mainRating'=>$res]);
     }
 }

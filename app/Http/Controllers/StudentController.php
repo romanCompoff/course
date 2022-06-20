@@ -175,10 +175,18 @@ class StudentController extends Controller
     {
         $model = new Student;
         $material = $model->getMaterial($request->id);
-        // dd($material);
         return view('study.homework', ['material'=>$material]);
     }
 
+    public function addRating(Request $request)
+    {
+        $model = new Student;
+        $rating = $model->getRating($request->course_id,  auth()->user()->id);
+        $rat = +$request->rating + $rating->rating;
+        $res = $model->addRating($request->course_id,  auth()->user()->id, $rat, $rating->passedMaterials);
+
+        return redirect()->route('home')->withSuccess('Рейтинг ' . $rat);
+    }
 
 
     public function notice()

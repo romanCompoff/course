@@ -98,4 +98,21 @@ class Student extends Model
    {
        return DB::table('materials')->where('id', $id)->first();
    }
+
+   public function getRating($cId, $uId)
+   {
+    return DB::table('user_courses')
+    ->where('user_id', $uId)
+    ->where('course_id', $cId)
+    ->first();
+   }
+
+   public function addRating($cId, $uId, $rating, $hw)
+   {
+    return DB::table('user_courses')
+    ->where('user_id', $uId)
+    ->where('course_id', $cId)
+    ->update(['rating'=>$rating, 'homeWork'=>$hw]);
+   }
+
 }

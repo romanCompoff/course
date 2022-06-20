@@ -36,7 +36,7 @@
                     <div class="row">
                         <h2>Мои домашние задания</h2>
                             @foreach($homeWorks as $css)
-                            <hr>
+
                             @foreach($css as $c)
                             <div class="col-lg-4 col-md-6 oneCourse" >
                                <div class="categorie-item">
@@ -54,6 +54,23 @@
                             @endforeach
                             @endforeach
 
+                    </div>
+                    <div class="row">
+                        <h2>Рейтинг студентов</h2>
+                        <div class="col-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                      <th>First Name</th>
+                                      <th>Rating</th>
+                                    </tr>
+                                <tbody>
+                                    @foreach ($mainRating as $item)
+                                    <tr><td>{{$item->name}}</td><td>{{+$item->rating}}</td></tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

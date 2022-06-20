@@ -42,7 +42,7 @@ Route::middleware(['role:student'])->prefix('study')->group( function () {
     Route::get('/course/{course_id}/material/{id}', [App\Http\Controllers\StudentController::class, 'oneMaterial'])->name('study.material');
     Route::get('/course/{course_id}/material/{id}/passed', [App\Http\Controllers\StudentController::class, 'passedMaterial'])->name('study.passed');
     Route::get('/course/{course_id}/material/{id}/homework', [App\Http\Controllers\StudentController::class, 'homeWork'])->name('study.homework');
-    // Route::get('/course/{course_id}/material/{id}/rating', [App\Http\Controllers\StudentController::class, 'addRating'])->name('study.rating');
+    Route::post('/rating', [App\Http\Controllers\StudentController::class, 'addRating'])->name('study.rating');
 });
 Route::middleware(['role:teacher'])->prefix('administrator')->group( function () {
     Route::resource('courses',  LCourseController::Class);

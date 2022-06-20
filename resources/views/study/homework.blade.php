@@ -12,8 +12,21 @@
         <div class="row">
             {{!!$material->homeWork!!}}
 
-            <a href="{{route('study.rating', ['res'=>5])}}" class="btn btn-success">Сохранить</a>
+            <div class="col-12 justify-center text-center p-5">
+                <form action="{{route('study.rating')}}" method="POST">
+                    @csrf
+                    <input type="hidden" value="5" name="rating">
+                    <input type="hidden" value="{{$material->course_id}}" name="course_id">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </form>
+            </div>
+
+
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="/js/minitest.js"></script>
 @endsection

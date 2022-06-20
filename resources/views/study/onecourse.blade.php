@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            @if (+$student->passedMaterials < $css->id)
+            @if (+$student->passedMaterials < $css->id || +$student->homeWork < $css->id )
                 @break
             @endif
             @endforeach
