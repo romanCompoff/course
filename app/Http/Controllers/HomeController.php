@@ -31,6 +31,13 @@ class HomeController extends Controller
         $model = new LCourse;
         $usersCourses = $model->coursesOfUser($uId);
 
-        return view('home', ['usersCourses'=>$usersCourses]);
+        $arr = [];
+        foreach($usersCourses as $uc){
+           $homeworks = $model->homeWorks($uc->id, $uc->passedMaterials, $uc->homeWork);
+           array_push($arr, $homeworks->all());
+        }
+
+        // dd($usersCourses);
+        return view('home', ['usersCourses'=>$usersCourses, 'homeWorks'=>$arr]);
     }
 }

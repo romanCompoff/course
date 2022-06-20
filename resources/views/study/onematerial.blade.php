@@ -6,12 +6,12 @@
 <section class="categories-section spad">
     <div class="container">
         <div class="section-title">
-            <h2>Материалы курса</h2>
-            <p>Выберите необходимую категорию.</p>
+            <h2>Материал</h2>
+            <p>{{$materials->description}}</p>
         </div>
         <div class="row">
             <!-- categorie -->
-            @foreach($materials as $css)
+            {{-- @foreach($materials as $css)
             <div class="col-lg-4 col-md-6">
                 <div class="categorie-item">
                     <div class="ci-thumb set-bg" data-setbg="/img-courses/{{$css->course_id}}/{{$css->picture}}"></div>
@@ -23,7 +23,8 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @endforeach --}}
+            <a href="{{route('study.passed', ['course_id'=>$student->course_id, 'id'=>$materials->id])}}" class="btn btn-success">Материал пройден</a>
         </div>
     </div>
 </section>

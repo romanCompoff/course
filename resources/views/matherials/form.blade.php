@@ -22,6 +22,10 @@
                   <input  name="name" type="text" class="form-control" placeholder="Имя" value="">
                 </div>
                 <div class="form-group">
+                  <label >Домашнее задание</label>
+                  <input  name="homeWork" type="text" class="form-control" placeholder="Домашнее задание" value="">
+                </div>
+                <div class="form-group">
                   <label for="">Преподаватель</label>
                   <select name="teacher_id" id="" class="form-select form-select-lg" style="width:100%">
 

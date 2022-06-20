@@ -18,9 +18,20 @@ class CreateUserCoursesTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id');
             $table->foreignId('course_id');
-            $table->integer('rating');
-            $table->integer('passedMaterials');
+            $table->integer('rating')->nullable();
+            $table->integer('passedMaterials')->nullable();
             $table->date('timeOfUsing');
+            $table->boolean('pay')->nullable();
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+            $table->foreign('course_id')
+            ->references('id')
+            ->on('l_courses')
+            ->onDelete('cascade');
+
+
         });
     }
 

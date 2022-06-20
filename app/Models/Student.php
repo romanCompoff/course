@@ -42,12 +42,11 @@ class Student extends Model
         ->count();
     }
 
-    public function addStudent($request, $gId)
+    public function addStudent( $gId, $uId)
    {
-        $data = HelperModel::removeToken($request);
-        $res = DB::table('usersBig')->insert(['groupe-id'=>$gId, 'user-id'=>$data['user_id'] ]);
+        $res = DB::table('usersBig')->insert(['groupe-id'=>$gId, 'user-id'=>$uId ]);
         if(!$res){return false;}
-        
+
 
 
    }
@@ -70,5 +69,33 @@ class Student extends Model
        return DB::table($this->table)->where('course_id', $id)->get();
    }
 
+   public function getStudent($uId, $cId)
+   {
+       return DB::table('user_courses')
+       ->where('user_id', $uId)
+       ->where('course_id', $cId)
+       ->where('timeOfUsing', '>', NOW())
+       ->first();
+   }
 
+   public function passedMaterial($cId, $mId, $uId)
+   {
+    return DB::table('user_courses')
+    ->where('user_id', $uId)
+    ->where('course_id', $cId)
+    ->update(['passedMaterials'=> $mId]);
+   }
+
+   public function getPassedMaterial($cId, $uId)
+   {
+       return DB::table('user_courses')
+       ->where('user_id', $uId)
+       ->where('course_id', $cId)
+       ->first();
+   }
+
+   public function getMaterial($id)
+   {
+       return DB::table('materials')->where('id', $id)->first();
+   }
 }

